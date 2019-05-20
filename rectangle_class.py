@@ -1,4 +1,4 @@
-class Rectangle():
+class Rectangle:
     def __init__(self, h, w, x=0, y=0):
         """
         Объявление прямоугольника в координатах
@@ -16,6 +16,10 @@ class Rectangle():
             raise TypeError('Неверный тип для h', type(h))
         if type(w) != int != type(w) != float:
             raise TypeError('Неверный тип для w', type(w))
+        if h < 0:
+            raise TypeError('Высота не может быть < 0')
+        if w < 0:
+            raise TypeError('Ширина не может быть < 0')
         self.__rectangle = {
             'x': x,
             'y': y,
@@ -89,6 +93,10 @@ class Rectangle():
             raise TypeError('Неверный тип для h', type(h))
         if type(w) != int != type(w) != float:
             raise TypeError('Неверный тип для w', type(w))
+        if h < 0:
+            raise TypeError('Высота не может быть < 0')
+        if w < 0:
+            raise TypeError('Ширина не может быть < 0')
         self.__rectangle['w'] = round(w, 2)
         self.__rectangle['h'] = round(h, 2)
 
@@ -103,6 +111,10 @@ class Rectangle():
             raise TypeError('Неверный тип для h', type(h))
         if type(w) != int != type(w) != float:
             raise TypeError('Неверный тип для w', type(w))
+        if self.__rectangle['h'] + round(h, 2) < 0:
+            raise TypeError('Высота не может быть < 0')
+        if self.__rectangle['w'] + round(w, 2) < 0:
+            raise TypeError('Ширина не может быть < 0')
         self.__rectangle['w'] += round(w, 2)
         self.__rectangle['h'] += round(h, 2)
 
