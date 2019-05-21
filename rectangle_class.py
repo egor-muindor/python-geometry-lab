@@ -122,7 +122,7 @@ class Rectangle:
 
     def combination(self, second_rectangle):
         """
-        Строит наименьший прямоугольник, содержащий оба заданных
+        Строит наименьший прямоугольник, содержащий оба заданных (относительно координат)
         :type second_rectangle: Rectangle
         :param second_rectangle: второй прямоугольник
         :return: Возвращает третий прямоугольник, содержащий оба входных
@@ -130,11 +130,15 @@ class Rectangle:
         if type(second_rectangle) != type(self):
             raise TypeError('Неверный тип для second_rectangle', type(second_rectangle))
 
-        second_rectangle = second_rectangle.get_rectangle()
-        max_h = max(self.__rectangle['h'], second_rectangle['h'])
-        max_w = max(self.__rectangle['w'], second_rectangle['w'])
 
-        return Rectangle(h=max_h, w=max_w)
+        fc = self.get_coords()
+        sc = second_rectangle.get_coords()
+        min_x = min([i[0] for i in fc] + [i[0] for i in sc])
+        max_x = max([i[0] for i in fc] + [i[0] for i in sc])
+        min_y = min([i[1] for i in fc] + [i[1] for i in sc])
+        max_y = max([i[1] for i in fc] + [i[1] for i in sc])
+
+        return Rectangle(x=min_x, y=min_y, w=max_x-min_x, h=max_y-min_y)
 
     def intersection(self, second_rectangle):
         """
